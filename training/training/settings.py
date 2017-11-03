@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'training.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'flow_hosp_live_2017_04_17',
+        'USER': 'Dijals',
+        'PASSWORD': '23071993',
+        'HOST': '192.168.16.74',
+        'PORT': '3360',
     }
 }
 
