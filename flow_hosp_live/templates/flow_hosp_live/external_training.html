@@ -9,13 +9,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title></title>
 	<link rel="stylesheet"  href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet"  href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}"/>
 	<link rel="stylesheet"  href="{% static 'css/site.css' %}"/>
 </head>
 <body>
 
 		<header class="container">
-			<h1>Welcome {{user.forename}} {{user.surname}}</h1>
+			
 			<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
+				<header class="navbar-header">
+		          	<button class="btn btn-success navbar-toggle" 
+		                  data-toggle="collapse"
+		                  data-target=".navbar-collapse">
+                      <span class="glyphicon glyphicon-chevron-down"></span>
+              		</button>
+
+					<div id="logo" >
+						<a href="index.html"><h4 class="logo-padding">Welcome {{user.forename}} {{user.surname}}</h4></a>
+					</div>	
+				</header>
 				<div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right">
 				    	<li class="nav"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
@@ -27,26 +39,38 @@
 		</header>
 
 		<main >
-			<section>
-			
-			<ul>
-				{% for training in external_training %}
-					<li> training {{forloop.counter}} : {{training.name}}</li>
-				{% endfor %}
-			</ul>
-			</section>
+			<div id="page" class="container">
 
-			<div class="dropdown show">
-			  <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Dropdown link
-			  </a>
 
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-			    <a class="dropdown-item" href="#">Action</a>
-			    <a class="dropdown-item" href="#">Another action</a>
-			    <a class="dropdown-item" href="#">Something else here</a>
-			  </div>
-			</div>		
+
+			    <!--Default buttons with dropdown menu-->
+			    <div class="btn-group">
+			        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Provider <span class="caret"></span></button>
+			        	<ul class="dropdown-menu">
+			        		{% for training in external_training %}
+			        			{% if training.provider == None %}
+									<li> Not Provided </li>
+			        			{% endif %}
+							{% endfor %}
+			        	</ul>
+			    </div>
+			    <!--Primary buttons with dropdown menu-->
+			    <div class="btn-group">
+			        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Training Type <span class="caret"></span></button>
+			        <ul class="dropdown-menu">
+			            <li><a href="#">Action</a></li>
+			            <li><a href="#">Another action</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">Separated link</a></li>
+			        </ul>
+			    </div>
+
+				<!--
+			            {% for training in external_training %}
+							<li> training {{forloop.counter}} : {{training.name}}</li>
+						{% endfor %}
+			    -->
+			</div>	
 		</main>
 		<hr/>
 		<footer class="container">
@@ -54,6 +78,7 @@
 		</footer>
 	</div>	
 	<script src=" {% static 'jquery-3.2.1.min.js' %}"></script>
+	<script src=" {% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>
