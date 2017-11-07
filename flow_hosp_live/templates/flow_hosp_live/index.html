@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+
+
+{% if test_list_for_index  %}
+	{% for listItem in test_list_for_index %}
+		<ul>
+			<li>{{listItem}}</li>
+		</ul>
+	{% endfor %}
+{% endif %}

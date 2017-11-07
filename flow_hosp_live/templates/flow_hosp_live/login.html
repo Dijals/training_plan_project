@@ -1,0 +1,11 @@
+{% if error_message %}
+	<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'flow_hosp_live:login_check' %}" method="post">	
+	{% csrf_token %}
+	<input type="text" name="username" id="login_username"  placeholder="Username" />
+	<input type="password" name="password" id="login_password"  placeholder="Password" />
+	<input class="" type="submit" value="login"/>
+	<input type="hidden" name="next" value="{{ next }}"/>
+</form> 
