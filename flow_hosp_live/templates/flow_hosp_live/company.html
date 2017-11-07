@@ -1,0 +1,21 @@
+	<h1>Welcome {{user.forename}} {{user.surname}}</h1>
+	<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
+		<div class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav navbar-right">
+		    	<li class="nav active"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
+		    	<li class="nav"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
+		    	<li class="nav cnt-padding"><a href="contact.html"> Training Sessions </a></li>
+		    </ul>
+		</div> 
+	</nav>
+	<main>
+		<section>
+			<h1>{{user.branch.company.name}}</h1>
+			<ul>
+				<li>Address : {{user.branch.company.address_street_1}}</li>
+				<li>Telephone : {{user.branch.company.telephone}}</li>
+				<li>Number of Employees : {{user.branch.company.number_of_employees}}</li>
+				<li>Creation Date : {{user.branch.company.created}}</li>
+		</ul>
+		</section>
+	</main>

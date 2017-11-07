@@ -1,0 +1,11 @@
+<h1>Welcome {{user.forename}} {{user.surname}}</h1>
+
+	<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
+		<div class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav navbar-right">
+		    	<li class="nav active"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
+		    	<li class="nav"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
+		    	<li class="nav cnt-padding"><a href="contact.html"> Training Sessions </a></li>
+		    </ul>
+		</div> 
+	</nav>

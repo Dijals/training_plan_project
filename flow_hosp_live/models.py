@@ -183,6 +183,24 @@ class CoreDepartment(models.Model):
         managed = True
         db_table = 'core_department'
 
+class CoreExternaltraining(models.Model):
+    company = models.ForeignKey(CoreCompany)
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    filename = models.CharField(max_length=255)
+    provider = models.CharField(max_length=200, blank=True, null=True)
+    training_type = models.CharField(max_length=200, blank=True, null=True)
+    training_time = models.IntegerField(blank=True, null=True)
+
+    def __unicode__(self):
+        return 'External Training: {}, {}'.format(self.name, self.company)
+
+    class Meta:
+        managed = True
+        db_table = 'core_externaltraining'
+        unique_together = (('company', 'name'),)
+
+
 class CoreIndividual(models.Model):
     created = models.DateTimeField()
     last_modified = models.DateTimeField()
