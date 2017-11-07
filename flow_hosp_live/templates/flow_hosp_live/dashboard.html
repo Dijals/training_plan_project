@@ -1,11 +1,39 @@
-<h1>Welcome {{user.forename}} {{user.surname}}</h1>
+{% load staticfiles %}
 
-	<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
-		<div class="navbar-collapse collapse">
-		    <ul class="nav navbar-nav navbar-right">
-		    	<li class="nav active"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
-		    	<li class="nav"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
-		    	<li class="nav cnt-padding"><a href="contact.html"> Training Sessions </a></li>
-		    </ul>
-		</div> 
-	</nav>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet"  href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet"  href="{% static 'css/site.css' %}"/>
+</head>
+<body>
+
+		<header class="container">
+			<h1>Welcome {{user.forename}} {{user.surname}}</h1>
+			<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
+				<div class="navbar-collapse collapse">
+				    <ul class="nav navbar-nav navbar-right">
+				    	<li class="nav"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
+				    	<li class="nav"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
+				    	<li class="nav cnt-padding"><a href="contact.html"> Training Sessions </a></li>
+				    </ul>
+				</div> 
+			</nav>
+		</header>
+
+		<main >
+		</main>
+		<hr/>
+
+		<footer class="container">
+
+		</footer>
+	</div>	
+	<script src=" {% static 'jquery-3.2.1.min.js' %}"></script>
+
+</body>
+</html>
