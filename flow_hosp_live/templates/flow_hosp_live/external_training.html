@@ -31,7 +31,7 @@
 				<div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right">
 				    	<li class="nav"><a href="{% url 'flow_hosp_live:index' %}"> Home </a></li>
-				    	<li class="nav "><a href="{% url 'flow_hosp_live:external_training' user.id %}"> About </a></li>
+				    	<li class="nav "><a href="#"> About </a></li>
 				    	<li class="nav"><a href="{% url 'flow_hosp_live:dashboard' user.id %}"> User Account </a></li>
 				    	<li class="nav cnt-padding"><a href="contact.html"> Logout </a></li>
 				    </ul>
@@ -48,7 +48,7 @@
 						    	<li class="nav "><a href="{% url 'flow_hosp_live:dashboard' user.id %}"> Dashboard </a></li>
 						    	<li class="nav"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
 						    	<li class="nav active"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
-						    	<li class="nav"><a href="contact.html"> Training Sessions </a></li>
+						    	<li class="nav"><a href="#"> Training Sessions </a></li>
 						    </ul>
 						</div> 
 					</nav>	
@@ -95,7 +95,6 @@
 								</select>
 							</div>
 						</div>
-						
 						
 					</form>
 				</section>
