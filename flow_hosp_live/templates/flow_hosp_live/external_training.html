@@ -13,72 +13,138 @@
 	<link rel="stylesheet"  href="{% static 'css/site.css' %}"/>
 </head>
 <body>
-
+	<div id="page" >
 		<header class="container">
 			
 			<nav id="menu" class="navbar navbar-default navbar-fixed-top" >
 				<header class="navbar-header">
-		          	<button class="btn btn-success navbar-toggle" 
+		          	<button class="btn btn-default btn-sm navbar-toggle" 
 		                  data-toggle="collapse"
 		                  data-target=".navbar-collapse">
-                      <span class="glyphicon glyphicon-chevron-down"></span>
+                      <span class="glyphicon glyphicon-align-justify"></span>
               		</button>
 
-					<div id="logo" >
-						<a href="index.html"><h4 class="logo-padding">Welcome {{user.forename}} {{user.surname}}</h4></a>
+					<div id="logo " >
+						<h4 class="logo-padding"><a href="{% url 'flow_hosp_live:index' %}">Flow Hospitality Training</a></h4>
 					</div>	
 				</header>
 				<div class="navbar-collapse collapse">
 				    <ul class="nav navbar-nav navbar-right">
-				    	<li class="nav"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
-				    	<li class="nav active"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
-				    	<li class="nav cnt-padding"><a href="contact.html"> Training Sessions </a></li>
+				    	<li class="nav"><a href="{% url 'flow_hosp_live:index' %}"> Home </a></li>
+				    	<li class="nav "><a href="{% url 'flow_hosp_live:external_training' user.id %}"> About </a></li>
+				    	<li class="nav "><a href="{% url 'flow_hosp_live:external_training' user.id %}"> User Account </a></li>
+				    	<li class="nav cnt-padding"><a href="contact.html"> Logout </a></li>
 				    </ul>
 				</div> 
 			</nav>
 		</header>
 
-		<main >
-			<div id="page" class="container">
+		<main class="container">
+
+				<section>
+					<nav class="well navbar navbar-default " >
+						<div class="tainee">
+						    <ul class="nav navbar-nav">
+						    	<li class="nav"><a href="{% url 'flow_hosp_live:company' user.id %}"> My Company </a></li>
+						    	<li class="nav active"><a href="{% url 'flow_hosp_live:external_training' user.id %}"> External Training </a></li>
+						    	<li class="nav"><a href="contact.html"> Training Sessions </a></li>
+						    </ul>
+						</div> 
+					</nav>	
+				</section>
+				<section class="page-header">
+					<header> <h1> External Training</h1></header>
+					<artical><h4>Welcome {{user.forename}} {{user.surname}} </h4></artical>
+				</section>
+				
+				<section class="row col-md-12">
+					<form class="form-horizontal" action="" method="post">
+						{% csrf_token %}
+						<div class="form-group">
+							<label class="control-lable col-md-4">Provider</label>
+							<div class="control-lable col-md-8">
+								<select class="form-control" name="provider" id="provider">
+									<option value="Select Provider">Select Provider</option>
+									{% for p in providers %}
+										{% if p.provider != '' and  p.provider != None %}
+											<option value="{{p.provider}}" tabindex="-1">{{p.provider}}</option>
+										{% elif p.provider == None %}
+											<option value="None" tabindex="-1">Not Provided</option>
+										{% else %}
+											<option value="" tabindex="-1">Missing</option>
+										{% endif %}
+									{% endfor %}
+								</select>				
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-lable col-md-4">Training Type</label>
+							<div class="control-lable col-md-8">
+								<select class="form-control" name="training_type" id="training_type">
+									<option value="Select Training Type">Select Training Type</option>
+									{% for type in training_types %}
+										{% if type.training_type != '' and  type.training_type != None %}
+											<option value="{{type.training_type}}" tabindex="-1">{{type.training_type}}</option>
+										{% elif type.training_type == None %}
+											<option value="None" tabindex="-1">Not Provided</option>
+										{% else %}
+											<option value="" tabindex="-1">Missing</option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						
+						
+					</form>
+				</section>
+
+				<section class="row col-md-12">
+					<header>
+							<h2>Training Information</h2>
+					</header>
+
+					<article>
+						<div class="table-responsive" >
+							<table class="table table-striped table-bordered table-hover table-condensed">
+									<thead>
+										<tr>
+											<th>Training Name</th>
+											<th>Descriptions</th>
+											<th>Provider</th>
+											<th>Training Type</th>
+										</tr>
+									</thead>
+								
+								
+									{% for training in external_training %}
+										<tr class="training-data">
+											<td class="col-md-3">{{training.name}}</td>
+											<td class="col-md-4">{{training.description}}</td>
+											<td class="col-md-3 provider_td">{{training.provider}}</td>
+											<td class="col-md-2 training_td">{{training.training_type}}</td>
+										</tr>
+									{% endfor %}
+								
+							</table>
+						</div>	
+					</article>
+					
+				</section>
 
 
 
-			    <!--Default buttons with dropdown menu-->
-			    <div class="btn-group">
-			        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Provider <span class="caret"></span></button>
-			        	<ul class="dropdown-menu">
-			        		{% for training in external_training %}
-			        			{% if training.provider == None %}
-									<li> Not Provided </li>
-			        			{% endif %}
-							{% endfor %}
-			        	</ul>
-			    </div>
-			    <!--Primary buttons with dropdown menu-->
-			    <div class="btn-group">
-			        <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Training Type <span class="caret"></span></button>
-			        <ul class="dropdown-menu">
-			            <li><a href="#">Action</a></li>
-			            <li><a href="#">Another action</a></li>
-			            <li class="divider"></li>
-			            <li><a href="#">Separated link</a></li>
-			        </ul>
-			    </div>
-
-				<!--
-			            {% for training in external_training %}
-							<li> training {{forloop.counter}} : {{training.name}}</li>
-						{% endfor %}
-			    -->
 			</div>	
 		</main>
 		<hr/>
 		<footer class="container">
 
 		</footer>
-	</div>	
+	</div>
+
 	<script src=" {% static 'jquery-3.2.1.min.js' %}"></script>
 	<script src=" {% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src=" {% static 'js/site.js' %}"></script>
 
 </body>
 </html>

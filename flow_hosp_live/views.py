@@ -3,9 +3,10 @@ from django.contrib.auth.models import Permission, User
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .models import CoreTrainee, CoreExternaltraining
+from .models import CoreTrainee, CoreExternaltraining, CoreCompany
 from django.views.decorators.http import require_http_methods
 from django.contrib.sessions.backends.db import SessionStore
+
 
 # Create your views here.
 def index(request):
@@ -89,13 +90,14 @@ def external_training(request, trainee_id):
 	#TODO add test.py 
 	user = CoreTrainee.objects.get(pk=trainee_id)
 	external_training = CoreExternaltraining.objects.filter(company_id = user.branch.company.id)
+	providers = external_training.values('provider').distinct()
+	training_types = external_training.values('training_type').distinct()
+
 	context = { 
 		'user' : user,
 		'external_training': external_training,
+		'providers' : providers,
+		'training_types' : training_types
 		}
 	return render(request, 'flow_hosp_live/external_training.html', context)
-		
 
-	
-	
-	

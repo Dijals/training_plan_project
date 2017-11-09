@@ -11,4 +11,7 @@ urlpatterns = [
 	url(r'^company/(?P<trainee_id>[0-9]+)/$', views.company, name="company"),
 	url(r'^external_training/(?P<trainee_id>[0-9]+)/$', views.external_training, name="external_training"),
 
+	#url(r'^external_training/(?P<trainee_id>[0-9]+)/(?P<provider>\w+)/$', views.external_training, name="external_training_product"),
+	#url(r'^external_training_check/(?P<trainee_id>[0-9]+)/$', views.external_training_check, name="external_training_check"),
+
 ]
